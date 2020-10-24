@@ -71,7 +71,7 @@ public class CartDaoSqlImpl implements CartDao {
 				MenuItem menuItem = new MenuItem(id, name, price, active, dateOfLaunch, category, freeDelivery);
 				menuItemList.add(menuItem);
 			}
-			System.out.println(prepareStatement);
+//			System.out.println(prepareStatement);
 //			preparedStatement.clearParameters();
 			
 		} catch (ClassNotFoundException e) {

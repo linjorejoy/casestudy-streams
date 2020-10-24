@@ -5,6 +5,7 @@ import java.util.List;
 import com.cognizant.truyum.model.MenuItem;
 
 public class CartDaoSqlImplTest {
+	private static CartDaoSqlImpl cartDaoImpl = new CartDaoSqlImpl();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -21,7 +22,7 @@ public class CartDaoSqlImplTest {
 	}
 	
 	public static void testAddCartItem() {
-		CartDaoSqlImpl cartDaoImpl = new CartDaoSqlImpl();
+		
 		cartDaoImpl.addCartItem(1, 2);
 		cartDaoImpl.addCartItem(1, 3);
 		cartDaoImpl.addCartItem(2, 2);
@@ -31,7 +32,7 @@ public class CartDaoSqlImplTest {
 	
 	public static void testGetAllCartItem() {
 		long userId = 1;
-		CartDaoSqlImpl cartDaoImpl = new CartDaoSqlImpl();
+
 		try {
 			cartDaoImpl.getAllCartItems(userId).forEach(System.out::println);
 			
@@ -42,13 +43,13 @@ public class CartDaoSqlImplTest {
 	}
 	
 	public static void testRemoveCartItem() {
-		CartDaoSqlImpl cartDaoImpl = new CartDaoSqlImpl();
-		long userId = 1;
+
+		long userId = 2;
 		System.out.println("\nBefore Delelting");
 		try {
 			cartDaoImpl.getAllCartItems(userId).forEach(System.out::println);
 			
-			long menuItemId = 1;
+			long menuItemId = 4;
 			cartDaoImpl.removeCartItem(userId, menuItemId);
 			System.out.println("\nAfter Delelting");
 			
