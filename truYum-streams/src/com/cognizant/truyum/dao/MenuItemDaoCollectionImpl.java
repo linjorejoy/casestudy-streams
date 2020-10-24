@@ -59,9 +59,9 @@ public class MenuItemDaoCollectionImpl implements MenuItemDao {
 	public Stream<MenuItem> getMenuItemListCustomer() {
 		
 		Date currDate = new DateUtil().convertToDate("20/10/2020");
-		Stream<MenuItem> customerItemStream = menuItemList.stream().filter(p -> p.isActive() &&  currDate.after(p.getDateOfLaunch()));
 		
-		return customerItemStream;
+		return menuItemList.stream().filter(p -> p.isActive() &&  currDate.after(p.getDateOfLaunch()));
+		
 	}
 
 	public void modifyMenuItem(MenuItem menuItem) {

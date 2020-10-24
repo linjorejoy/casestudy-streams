@@ -28,7 +28,7 @@ public class MenuItemDaoCollectionImplTest {
 
 	public static void testGetMenuListCustomer() {
 
-		menuItemDao.getMenuItemListCustomer().forEach(System.out::println);;
+		menuItemDao.getMenuItemListCustomer().forEach(System.out::println);
 
 	}
 
