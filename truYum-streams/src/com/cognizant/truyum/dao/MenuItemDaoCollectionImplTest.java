@@ -1,6 +1,6 @@
 package com.cognizant.truyum.dao;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import com.cognizant.truyum.model.MenuItem;
 import com.cognizant.truyum.util.DateUtil;
@@ -21,21 +21,15 @@ public class MenuItemDaoCollectionImplTest {
 	}
 
 	public static void testGetMenuItemListAdmin() {
-
-		List<MenuItem> menuItemList = menuItemDao.getMenuItemListAdmin();
-
-		for (MenuItem item : menuItemList) {
-			System.out.println(item);
-		}
+		
+		Stream<MenuItem> menuItemStream = menuItemDao.getMenuItemListAdmin();
+		menuItemStream.forEach(System.out::println);
 	}
 
 	public static void testGetMenuListCustomer() {
 
-		List<MenuItem> menuItemList = menuItemDao.getMenuItemListCustomer();
+		menuItemDao.getMenuItemListCustomer().forEach(System.out::println);;
 
-		for (MenuItem item : menuItemList) {
-			System.out.println(item);
-		}
 	}
 
 	public static void testModifyMenuItem() {

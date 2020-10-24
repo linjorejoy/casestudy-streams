@@ -1,13 +1,14 @@
 package com.cognizant.truyum.dao;
 
-import java.util.List;
+import java.util.stream.Stream;
+
 import com.cognizant.truyum.model.MenuItem;
 
 public interface MenuItemDao {
 	
-	public List<MenuItem> getMenuItemListAdmin();
+	public Stream<MenuItem> getMenuItemListAdmin();
 	
-	public List<MenuItem> getMenuItemListCustomer();
+	public Stream<MenuItem> getMenuItemListCustomer();
 	
 	public void modifyMenuItem(MenuItem menuItem);
 	

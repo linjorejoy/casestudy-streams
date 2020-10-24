@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 import com.cognizant.truyum.model.MenuItem;
 
@@ -15,7 +16,7 @@ public class MenuItemDaoSqlImpl implements MenuItemDao {
 	private static PreparedStatement preparedStatement = null;
 
 	@Override
-	public List<MenuItem> getMenuItemListAdmin() {
+	public Stream<MenuItem> getMenuItemListAdmin() {
 		List<MenuItem> menuItemsList = new ArrayList<>();
 		try {
 			Connection connection = ConnectionHandler.getConnection();
@@ -43,11 +44,11 @@ public class MenuItemDaoSqlImpl implements MenuItemDao {
 			e.printStackTrace();
 		}
 
-		return menuItemsList;
+		return menuItemsList.stream();
 	}
 
 	@Override
-	public List<MenuItem> getMenuItemListCustomer() {
+	public Stream<MenuItem> getMenuItemListCustomer() {
 		List<MenuItem> menuItemsList = new ArrayList<>();
 		try {
 			Connection connection = ConnectionHandler.getConnection();
@@ -75,7 +76,7 @@ public class MenuItemDaoSqlImpl implements MenuItemDao {
 			e.printStackTrace();
 		}
 
-		return menuItemsList;
+		return menuItemsList.stream();
 	}
 
 	@Override
@@ -136,7 +137,7 @@ public class MenuItemDaoSqlImpl implements MenuItemDao {
 			}
 			preparedStatement.clearParameters();
 
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) { 
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();

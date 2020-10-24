@@ -3,6 +3,7 @@ package com.cognizant.truyum.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 import com.cognizant.truyum.model.MenuItem;
 import com.cognizant.truyum.util.DateUtil;
@@ -49,22 +50,18 @@ public class MenuItemDaoCollectionImpl implements MenuItemDao {
 		MenuItemDaoCollectionImpl.menuItemList = menuItemList;
 	}
 
-	public List<MenuItem> getMenuItemListAdmin() {
+	public Stream<MenuItem> getMenuItemListAdmin() {
 
-		return menuItemList;
+		return menuItemList.stream();
 	}
 
 	
-	public List<MenuItem> getMenuItemListCustomer() {
-		List<MenuItem> customerItemList = new ArrayList<>();
-		Date currDate = new DateUtil().convertToDate("20/10/2020");
+	public Stream<MenuItem> getMenuItemListCustomer() {
 		
-		for(MenuItem item : menuItemList) {
-			if(item.isActive() && currDate.after(item.getDateOfLaunch())){
-				customerItemList.add(item);
-			}
-		}
-		return customerItemList;
+		Date currDate = new DateUtil().convertToDate("20/10/2020");
+		Stream<MenuItem> customerItemStream = menuItemList.stream().filter(p -> p.isActive() &&  currDate.after(p.getDateOfLaunch()));
+		
+		return customerItemStream;
 	}
 
 	public void modifyMenuItem(MenuItem menuItem) {
