@@ -25,8 +25,7 @@ public class MenuItemDaoSqlImplTest {
 	
 	public static void testGetMenuItemListAdmin() {
 		
-		Stream<MenuItem> itemAdminStream = menuItemDao.getMenuItemListAdmin();
-		itemAdminStream.forEach(System.out::println);
+		menuItemDao.getMenuItemListAdmin().forEach(System.out::println);
 	}
 	
 	public static void testGetMenuItemListCustomer() {

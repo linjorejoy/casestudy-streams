@@ -22,8 +22,7 @@ public class MenuItemDaoCollectionImplTest {
 
 	public static void testGetMenuItemListAdmin() {
 		
-		Stream<MenuItem> menuItemStream = menuItemDao.getMenuItemListAdmin();
-		menuItemStream.forEach(System.out::println);
+		menuItemDao.getMenuItemListAdmin().forEach(System.out::println);
 	}
 
 	public static void testGetMenuListCustomer() {
