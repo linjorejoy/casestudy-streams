@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 import com.cognizant.truyum.model.Cart;
 import com.cognizant.truyum.model.MenuItem;
@@ -31,7 +32,7 @@ public class CartDaoSqlImpl implements CartDao {
 			}else {
 				System.out.println("Query Unsuccessful");
 			}
-			preparedStatement.clearParameters();
+//			preparedStatement.clearParameters();
 			
 		} catch (ClassNotFoundException e) {
 
@@ -44,7 +45,7 @@ public class CartDaoSqlImpl implements CartDao {
 	}
 
 	@Override
-	public List<MenuItem> getAllCartItems(long userId) throws CartEmptyException {
+	public Stream<MenuItem> getAllCartItems(long userId) throws CartEmptyException {
 		List<MenuItem> menuItemList = new ArrayList<>();
 		Cart cart = new Cart(menuItemList, 0);
 		double total = 0;
@@ -70,7 +71,8 @@ public class CartDaoSqlImpl implements CartDao {
 				MenuItem menuItem = new MenuItem(id, name, price, active, dateOfLaunch, category, freeDelivery);
 				menuItemList.add(menuItem);
 			}
-			preparedStatement.clearParameters();
+			System.out.println(prepareStatement);
+//			preparedStatement.clearParameters();
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -81,7 +83,7 @@ public class CartDaoSqlImpl implements CartDao {
 		}
 		cart.setMenuItemList(menuItemList);
 		cart.setTotal(total);
-		return menuItemList;
+		return menuItemList.stream();
 	}
 
 	@Override
@@ -100,7 +102,7 @@ public class CartDaoSqlImpl implements CartDao {
 			}else {
 				System.out.println("Query Unsuccessful");
 			}
-			preparedStatement.clearParameters();
+//			preparedStatement.clearParameters();
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

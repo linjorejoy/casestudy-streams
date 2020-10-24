@@ -22,23 +22,21 @@ public class CartDaoSqlImplTest {
 	
 	public static void testAddCartItem() {
 		CartDaoSqlImpl cartDaoImpl = new CartDaoSqlImpl();
-		cartDaoImpl.addCartItem(2, 2);
 		cartDaoImpl.addCartItem(1, 2);
+		cartDaoImpl.addCartItem(1, 3);
 		cartDaoImpl.addCartItem(2, 2);
 		cartDaoImpl.addCartItem(2, 3);
 		cartDaoImpl.addCartItem(2, 4);
 	}
 	
 	public static void testGetAllCartItem() {
-		int user_id = 2;
+		long userId = 1;
 		CartDaoSqlImpl cartDaoImpl = new CartDaoSqlImpl();
 		try {
-			List<MenuItem> menuItemList = cartDaoImpl.getAllCartItems(user_id);
-			for(MenuItem item : menuItemList) {
-				System.out.println(item);
-			}
+			cartDaoImpl.getAllCartItems(userId).forEach(System.out::println);
+			
 		} catch (CartEmptyException e) {
-			System.out.printf("The user id number %f did not buy anything\n",user_id);
+			System.out.printf("The user id number %f did not buy anything\n",userId);
 			e.printStackTrace();
 		}
 	}
@@ -48,22 +46,16 @@ public class CartDaoSqlImplTest {
 		long userId = 1;
 		System.out.println("\nBefore Delelting");
 		try {
-			for(MenuItem item : cartDaoImpl.getAllCartItems(userId)) {
-				System.out.println(item);
-			}
+			cartDaoImpl.getAllCartItems(userId).forEach(System.out::println);
+			
+			long menuItemId = 1;
+			cartDaoImpl.removeCartItem(userId, menuItemId);
+			System.out.println("\nAfter Delelting");
+			
+			cartDaoImpl.getAllCartItems(userId).forEach(System.out::println);
+			
 		} catch (CartEmptyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		long menuItemId = 1;
-		cartDaoImpl.removeCartItem(userId, menuItemId);
-		System.out.println("\nAfter Delelting");
-		try {
-			for(MenuItem item : cartDaoImpl.getAllCartItems(userId)) {
-				System.out.println(item);
-			}
-		} catch (CartEmptyException e) {
-			// TODO Auto-generated catch block
+			System.out.printf("The user id number %f did not buy anything\n",userId);
 			e.printStackTrace();
 		}
 		System.out.println();

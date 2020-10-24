@@ -20,10 +20,8 @@ public class CartDaoCollectionImplTest {
 	private static void testRemoveCartItem() {
 
 		cartDao.removeCartItem(1, 1);
-		List<MenuItem> cartItemList;
 		try {
-			cartItemList = cartDao.getAllCartItems(1);
-			cartItemList.forEach(System.out::println);
+			cartDao.getAllCartItems(1).forEach(System.out::println);
 		} catch (CartEmptyException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,12 +31,10 @@ public class CartDaoCollectionImplTest {
 
 	private static void testGetAllCartItems() {
 
-
 		try {
-			List<MenuItem> allCartItems = cartDao.getAllCartItems(1);
-			allCartItems.forEach(System.out::println);
+			cartDao.getAllCartItems(1).forEach(System.out::println);
 		} catch (CartEmptyException e) {
-
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -49,10 +45,9 @@ public class CartDaoCollectionImplTest {
 
 		cartDao.addCartItem(1, 1);
 		try {
-			List<MenuItem> cartItemList = cartDao.getAllCartItems(1);
-			cartItemList.forEach(System.out::println);
+			cartDao.getAllCartItems(1).forEach(System.out::println);
 		} catch (CartEmptyException e) {
-
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

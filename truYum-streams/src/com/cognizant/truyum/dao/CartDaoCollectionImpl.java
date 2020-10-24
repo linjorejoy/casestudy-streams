@@ -1,10 +1,11 @@
 package com.cognizant.truyum.dao;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import com.cognizant.truyum.model.Cart;
 import com.cognizant.truyum.model.MenuItem;
@@ -47,22 +48,21 @@ public class CartDaoCollectionImpl implements CartDao {
 	}
 
 	@Override
-	public List<MenuItem> getAllCartItems(long userId) throws CartEmptyException {
+	public Stream<MenuItem> getAllCartItems(long userId) throws CartEmptyException {
 		
 		Cart cart = userCarts.get(userId);
 		List<MenuItem> allCartItems = cart.getMenuItemList();
 		if (allCartItems.isEmpty()) {
 			throw new CartEmptyException();
 		} else {
-			double total = 0;
-			for (MenuItem item : allCartItems) {
-				total += item.getPrice();
-			}
+			double total = allCartItems.stream().mapToDouble(d -> d.getPrice()).sum();
 			cart.setTotal(total);
 		}
-		return allCartItems;
+		return allCartItems.stream();
 	}
 
+	
+	
 	@Override
 	public void removeCartItem(long userId, long menuItemId) {
 		
