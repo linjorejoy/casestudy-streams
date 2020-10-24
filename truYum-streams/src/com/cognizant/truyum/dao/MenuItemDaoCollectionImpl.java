@@ -3,6 +3,7 @@ package com.cognizant.truyum.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import com.cognizant.truyum.model.MenuItem;
@@ -84,12 +85,13 @@ public class MenuItemDaoCollectionImpl implements MenuItemDao {
 
 	public MenuItem getMenuItem(long menuItemId) {
 
+		Optional<MenuItem> menuItemOptional = menuItemList.stream().filter(p -> p.getId() == menuItemId).findFirst();
 		for (MenuItem menuItem : menuItemList) {
 			if (menuItem.getId() == menuItemId) {
 				return menuItem;
 			}
 		}
-		return null;
+		return menuItemOptional.get();
 	}
 	
 }
