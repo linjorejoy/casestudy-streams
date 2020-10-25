@@ -1,9 +1,5 @@
 package com.cognizant.truyum.dao;
 
-import java.util.List;
-
-import com.cognizant.truyum.model.MenuItem;
-
 public class CartDaoSqlImplTest {
 	private static CartDaoSqlImpl cartDaoImpl = new CartDaoSqlImpl();
 
