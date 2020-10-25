@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 import com.cognizant.truyum.model.Cart;
@@ -49,6 +49,7 @@ public class CartDaoCollectionImpl implements CartDao {
 
 	@Override
 	public Stream<MenuItem> getAllCartItems(long userId) throws CartEmptyException {
+		
 		
 		Cart cart = userCarts.get(userId);
 		List<MenuItem> allCartItems = cart.getMenuItemList();
